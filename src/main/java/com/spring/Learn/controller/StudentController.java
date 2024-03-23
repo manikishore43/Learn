@@ -4,6 +4,8 @@ import com.spring.Learn.model.student;
 import com.spring.Learn.repo.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
+import com.spring.Learn.model.Address;
 
 import java.util.List;
 
@@ -13,6 +15,9 @@ public class StudentController {
 
     @Autowired
     StudentRepository studentRepository;
+
+    @Autowired
+    RestTemplate restTemplate;
 
 
     @PostMapping("/saveStudent")
@@ -30,7 +35,12 @@ public class StudentController {
     @GetMapping("/getStudentById/{Id}")
     public student getStudentById(@PathVariable Long Id)
     {
-        return studentRepository.findById(Id).get();
+        student s= studentRepository.findById(Id).get();
+        System.out.println(s.getName() + " Name");
+        Address a = restTemplate.getForObject(
+                "http://localhost:8081/v1/address/getAddressByName/{name}", Address.class, s.getName());
+        s.setAddress(a);
+        return s;
     }
 }
 

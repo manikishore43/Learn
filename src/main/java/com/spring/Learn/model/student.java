@@ -23,6 +23,17 @@ public class student {
     @JoinColumn(name = "subject_id", referencedColumnName = "id")
     private Subject subject;
 
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    @Transient
+    private Address address;
+
     public Long getId() {
         return id;
     }
