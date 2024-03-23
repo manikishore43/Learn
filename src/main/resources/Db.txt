@@ -1,0 +1,11 @@
+Create Database student;
+
+CREATE TABLE student (id int AUTO_INCREMENT PRIMARY KEY, name VARCHAR(20),standard VARCHAR(20));
+
+CREATE TABLE Subject (id int AUTO_INCREMENT PRIMARY KEY, name VARCHAR(20),teacherName VARCHAR(20));
+
+ALTER TABLE student
+ADD subject_id int;
+
+ALTER TABLE student
+    ADD CONSTRAINT fk_Student FOREIGN KEY (subject_id) REFERENCES Subject (id);
