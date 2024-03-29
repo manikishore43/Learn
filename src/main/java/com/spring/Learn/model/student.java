@@ -1,13 +1,15 @@
 package com.spring.Learn.model;
 
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotNull(message = "name cannot be null")
     private String name;
     private String standard;
 

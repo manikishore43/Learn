@@ -1,0 +1,31 @@
+create 2 folder 1.zookeeper-logs for storing logs and 2. logs folder to store kafka logs
+
+point these 2 folders to config folder inside server config file and zookeeper property files.
+
+
+1. create log folder of logs and zookeeperlogs  and put the path inside config folder server  and zookeeper prop file
+
+
+2. start the zookeeper (zookeeper-server-start.bat and zookeeper.prop file)
+
+     .\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties
+
+3. start server
+	.\bin\windows\kafka-server-start.bat .\config\server.properties
+
+4. create the topic
+
+in bin windows
+        kafka-topics.bat --create --topic quickstart-events --bootstrap-server localhost:9092
+
+5. produce a message
+
+   kafka-console-producer.bat --topic quickstart-events --bootstrap-server localhost:9092
+
+6. consume a message
+
+  kafka-console-consumer.bat --topic quickstart-events --from-beginning --bootstrap-server localhost:9092
+
+
+Note: Kafka server running in 9092 port
+        zookeeper running in port 2181

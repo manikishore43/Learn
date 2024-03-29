@@ -1,6 +1,7 @@
 package com.spring.Learn.model;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+
 
 @Entity
 public class Subject {
