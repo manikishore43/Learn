@@ -35,17 +35,20 @@ public class StudentController {
     @GetMapping("/getAllStudents")
     public List<student> getStudent()
     {
-        return studentRepository.findAll();
+        List<student> studentList= studentRepository.findAll();
+        studentList.forEach(
+                student -> {
+                    Address a = webClientBuilder.build().get().uri("http://localhost:8081/v1/address/getAddressByName/"+ student.getName()).retrieve().bodyToMono(Address.class).block();
+                    student.setAddress(a);
+                }
+        );
+        return studentList;
     }
 
     @GetMapping("/getStudentById/{Id}")
     public student getStudentById(@PathVariable Long Id)
     {
         student s= studentRepository.findById(Id).get();
-        System.out.println(s.getName() + " Name");
-       /* Address a = restTemplate.getForObject(
-                "http://localhost:8081/v1/address/getAddressByName/{name}", Address.class, s.getName());*/
-       // s.setAddress(a);
         Address a= webClientBuilder.build().get().uri("http://localhost:8081/v1/address/getAddressByName/"+s.getName()).retrieve().bodyToMono(Address.class).block();
         s.setAddress(a);
         return s;

@@ -1,4 +1,4 @@
-package com.spring.Learn.com.spring.Learn;
+package com.spring.Learn.Exception;
 
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpHeaders;
