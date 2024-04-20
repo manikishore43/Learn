@@ -3,8 +3,10 @@ package com.spring.Learn.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import lombok.Builder;
 
 @Entity
+@Builder
 public class student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

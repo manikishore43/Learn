@@ -17,11 +17,6 @@ public class LearnApplication {
 		SpringApplication.run(LearnApplication.class, args);
 	}
 
-    @Bean
-	public RestTemplate getRestTemplate() {
-		return new RestTemplate();
-	}
-
 	@Bean
 	public WebClient.Builder getWebClientBuilder(){
 		return WebClient.builder();
